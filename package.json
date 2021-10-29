@@ -1,0 +1,113 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "JSON schema Application Package Manager",
+  "type": "object",
+  "definitions": {
+    "person": {
+      "description": "A person or an organization who has been involved in creating or maintaining this package.",
+      "type": [
+        "object",
+        "string"
+      ],
+      "required": [
+        "name"
+      ],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "email": {
+          "type": "string",
+          "format": "email"
+        }
+      }
+    },
+    "dependency": {
+      "description": "Record of dependencies used by the current package",
+      "type": "object"
+    }
+  },
+  "properties": {
+    "name": {
+      "description": "The name of the package.",
+      "type": "string",
+      "maxLength": 199,
+      "minLength": 1,
+      "pattern": "^(?:@[a-z0-9-*~][a-z0-9-*._~]*/)?[a-z0-9-~][a-z0-9-._~]*$"
+    },
+    "version": {
+      "description": "Version of the package following the Semantic Versioning system.",
+      "type": "number"
+    },
+    "description": {
+      "description": "Description of the package",
+      "type": "string"
+    },
+    "author": {
+      "$ref": "#/definitions/person"
+    },
+    "contributors": {
+      "description": "Individuals who have contributed in the development of this package.",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/person"
+      }
+    },
+    "maintainers": {
+      "description": "Individuals who regularly maintain this package.",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/person"
+      }
+    },
+    "license": {
+      "description": "License included with the package",
+      "type": "string"
+    },
+    "homepage": {
+      "description": "Link to the project's homepage or website",
+      "type": "string"
+    },
+    "repository": {
+      "description": "Link to where the code of this package live like Git, SVN or Mercurial.",
+      "type": [
+        "object",
+        "string"
+      ],
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "directory": {
+          "type": "string"
+        }
+      }
+    },
+    "dependencies": {
+      "$ref": "#/definitions/dependency"
+    },
+    "devDependencies": {
+      "$ref": "#/definitions/dependency"
+    },
+    "peerDependencies": {
+      "$ref": "#/definitions/dependency"
+    },
+    "bundledDependencies": {
+      "$ref": "#/definitions/dependency"
+    },
+    "optionalDependencies": {
+      "$ref": "#/definitions/dependency"
+    },
+    "scripts": {
+      "description": "The list of commands to be executed at various lifecycle events in the package.",
+      "type": "object"
+    }
+  }
+}
