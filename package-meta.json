@@ -41,7 +41,7 @@
     },
     "version": {
       "description": "Version of the package following the Semantic Versioning system.",
-      "type": "number"
+      "type": "string"
     },
     "description": {
       "description": "Description of the package",
